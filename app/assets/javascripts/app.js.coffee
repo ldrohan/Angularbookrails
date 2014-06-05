@@ -12,6 +12,12 @@ BookApp.controller("BooksCtrl", ["$scope", "$http", ($scope, $http)->
 			$scope.newBook = {}
 			$scope.books.push(data)
 
+	$scope.editBook = ->
+		console.log @book
+		$http.put("/books/#{@book.id}.json", @book).success (data)=>	
+		
+
+
 	$scope.deleteBook = ->
 		console.log @book	
 		index = @$index
@@ -19,6 +25,9 @@ BookApp.controller("BooksCtrl", ["$scope", "$http", ($scope, $http)->
 		$scope.books.splice(index,1)
 
 ])
+
+	
+
 
 BookApp.config(["$httpProvider", ($httpProvider)->
 	$httpProvider.defaults.headers.common['X-CSRF-TOKEN'] = $('meta[name=csrf-token]').attr('content')

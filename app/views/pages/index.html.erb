@@ -11,7 +11,18 @@ Book App
   </form>
   
   <ul ng-repeat="book in books">
-    <li>{{book.title}} - {{book.author}}<button ng-click="deleteBook()">Delete</button></li>
+    <!-- PUT EDIT FORM HERE USE NG SHOW AND TOGGLE -->
+    
+      <form ng-show="editing" ng-submit="editing = false">
+        <input type="text" ng-model="book.title">
+        <input type="text" ng-model="book.author">
+        <input type="text" ng-model="book.description">
+        <input type="text" ng-model="book.isbn">
+        <button ng-click="editBook()">Update changes</button>
+      </form>
+        
+    <li>{{book.title}} - {{book.author}}<button ng-click="deleteBook()">Delete</button><span ng-hide="editing" ng-click="editing = true"><button>Edit</button></span>
+    </li>
   </ul>
   
 
